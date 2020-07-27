@@ -11,9 +11,8 @@ import SignUp from './components/SignUp'
 import FooterPage from './components/Footer'
 import ForgotPass from './components/FrogotPassword'
 import Mercedes from './components/Mercedes'
-
 import './components/App.css'
-
+import SimpleSlider from './components/Slider/Slider'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +38,7 @@ function App() {
     <>
       <Router>
         <Header value={count.count} />
+        <SimpleSlider />
         <Route path='/' exact >
           <Grid container justify="center" >
             {data.map((value) => (

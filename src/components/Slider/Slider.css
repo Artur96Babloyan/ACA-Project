@@ -1,0 +1,24 @@
+.slick-arrow.slick-next{
+ display: none !important;
+}
+.slick-arrow.slick-prev{
+ display: none !important;
+}
+
+div > h3{
+ margin-left: 5%;
+ margin-top: 5%;
+ margin-bottom: 2%;
+ font-size: 50px;
+ color:#195473
+}
+
+div > .slideA {
+ margin-left: 5%;
+ margin-top: -3%;
+ color: rgb(255, 255, 255);
+ font-size: 30px;
+ background: #195473;
+ text-decoration: none;
+ padding: 10px;
+}

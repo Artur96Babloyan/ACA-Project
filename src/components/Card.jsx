@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     transform: 'rotate(160deg)',
   },
   avatar: {
-    backgroundColor: '#1f5aba',
+    backgroundColor: '#195473',
   },
 }));
 
