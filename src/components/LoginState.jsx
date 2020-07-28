@@ -36,15 +36,15 @@ function Loginstate(props) {
   <>
    <div >
 
-    <Button onClick={logout} variant="contained" color="primary">
+    <Button onClick={logout}style={{color:'white'}}>
      log out
       </Button>
-    <Button onClick={profile} variant="contained" color="primary">
+    {/* <Button onClick={profile} variant="contained" color="primary">
      Details
       </Button>
     <Button onClick={changeClick} variant="contained" color="primary" >
      change password
-      </Button>
+      </Button> */}
     {dialogisopen && <Dialogitem isOpen={changeClick} />}
    </div>
 
