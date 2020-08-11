@@ -13,7 +13,9 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import { withRouter } from "react-router-dom";
-import Loginlogout from './LoginLogout'
+import Loginlogout from './LoginLogout';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import './App.css'
 
 
 
@@ -29,38 +31,43 @@ const StyledBadge = withStyles((theme) => ({
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    maxWidth: '100%',
   },
+
   butons: {
     '& > *': {
-      marginRight: theme.spacing(3),
+      // marginRight: theme.spacing(3),
+      margin : '1vw',
       color: 'white',
-      fontSize: 20
+      fontSize: '1.3vw'
     },
     flexGrow: 1,
   },
   body: {
     backgroundColor: '#195473',
   },
-  rooot: {
-    padding: '2px 4px',
+  search: {
+    padding: '0.5vw 1vw',
     display: 'flex',
     alignItems: 'center',
-    width: 100,
-    
+    width: '10vw',
+
   },
   iconButton: {
-    padding: 10,
+    padding: '0.5vw',
     color: 'white'
   },
   input: {
-    marginLeft: theme.spacing(1),
+    // marginLeft: theme.spacing(1),
+    marginLeft:'1vw',
     flex: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    // marginRight: theme.spacing(2),
+    marginRight:'2vw'
   },
   title: {
-    fontSize: 30,
+    fontSize: '2vw',
     flexGrow: 1,
   },
 }));
@@ -92,10 +99,10 @@ function Header(props) {
       <AppBar position="static" className={classes.body}>
         <Toolbar>
           {/* <LongMenu /> */}
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h9" className={classes.title}>
             <a href='/' style={{ color: "white", textDecoration: 'none' }} >MED.AM</a>
           </Typography>
-          <div className={classes.butons}>
+          <div className={classes.butons} id='button'>
             <Button href='/'>ԳԼԽԱՎՈՐ</Button>
             <Button href="#text-buttons" >ՏԵՍԱԿԱՆԻ</Button>
             <Button href="#text-buttons" >ՄԵՐ ՄԱՍԻՆ</Button>
@@ -106,7 +113,7 @@ function Header(props) {
             <SearchIcon />
           </IconButton>
           {openSearch &&
-            <Paper className={classes.rooot}>
+            <Paper className={classes.search}>
               <InputBase id="standard-basic"
                 label="Search"
                 onChange={onchange}
@@ -120,6 +127,7 @@ function Header(props) {
             <StyledBadge badgeContent={props.value} color="secondary">
               <AddShoppingCartIcon />
             </StyledBadge></Button>
+            {/* <AccountBoxIcon /> */}
           <Loginlogout />
         </Toolbar>
       </AppBar>

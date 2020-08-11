@@ -1,55 +1,43 @@
 import React from 'react';
 import './App.css';
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route,Link } from "react-router-dom";
 import fire from "./firebase";
 import "firebase/auth";
 import firebase from 'firebase'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Dialogitem from './Dialog'
+
+import { BsPersonSquare } from "react-icons/bs";
+import {FiUserCheck } from "react-icons/fi";
 function Loginstate(props) {
- const [dialogisopen, setDialogisopen] = useState(null)
- const changeClick = () => {
-
-  setDialogisopen(!dialogisopen)
- }
- const logout = () => {
-
-  fire.auth().signOut().then((cred) => {
-   console.log('sign out')
-  })
- }
-
- const profile = () => {
-
-  const user = firebase.auth().currentUser;
-  if (user) {
-   alert(user.displayName + ' ' + user.email + ' ' + user.uid)
-
-  } else {
-   console.log('there is not currentUser')
-  }
- }
-
-
+ 
+      const [admin,setAdmin]=useState(null)
+ 
+ 
+      const userState=()=>{
+         firebase.auth().onAuthStateChanged(user=>{
+           if(user) {
+               if(user.email==='admin@admin.com') {
+                setAdmin(true)
+               
+               } 
+           } 
+         })
+       }
+    
+       useEffect(()=>{
+        userState()
+       }
+        )
  return (
   <>
    <div >
-
-    <Button onClick={logout}style={{color:'white'}}>
-     log out
-      </Button>
-    {/* <Button onClick={profile} variant="contained" color="primary">
-     Details
-      </Button>
-    <Button onClick={changeClick} variant="contained" color="primary" >
-     change password
-      </Button> */}
-    {dialogisopen && <Dialogitem isOpen={changeClick} />}
+   {!admin && <Link to="/UserInfo"><BsPersonSquare   style={{ color: 'white', textDecoration: 'none',cursor:'pointer' }}/></Link> }
+   {admin && <Link to="/admin"><FiUserCheck   size='30px' style={{ color: 'white', textDecoration: 'none',cursor:'pointer' }}/></Link>}
+   
    </div>
-
   </>
  );
-
 }
 export default Loginstate;

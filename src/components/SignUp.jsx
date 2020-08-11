@@ -82,18 +82,30 @@ function SignUp(props) {
 
 
 
-  const signup = () => {
-
-
-    fire.auth().createUserWithEmailAndPassword(email, password).then((cred) => {
-      console.log(cred.user)
-      cred.user.updateProfile({
-        displayName: firstname + lastname
-
-      })
-
+  const signup=()=>{
+    var id;
+    
+    fire.auth().createUserWithEmailAndPassword(email,password).then((cred)=>{
+      
+      
+      console.log(cred) 
+    console.log(cred.user)
+    cred.user.updateProfile({
+    displayName: firstname+' '+''+lastname
+    
     })
-  }
+    fire.firestore().collection('Users').doc().set({
+      name:firstname,
+      surname:lastname,
+      id:cred.user.uid,
+      email:email,
+      joinedDate: new Date().toString(),
+      purchases: []
+    })
+    })
+    
+    
+    }  
 
 
   const { classes } = props

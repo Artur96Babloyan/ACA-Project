@@ -6,18 +6,25 @@ import   "firebase/auth";
 import firebase from'firebase'
 import Loginstate from "./LoginState";
 import Logoutstate from "./LogoutState";
-
 function  Loginlogout (props) {
   const [user,setUser]=useState(null)
+  const [admin,setAdmin]=useState(null)
  
  
   const userState=()=>{
      firebase.auth().onAuthStateChanged(user=>{
        if(user) {
-         console.log(user.email)
+           if(user.email==='admin@admin.com') {
+            setAdmin(true)
+            setUser(user)
+           } else {
+        
          setUser(user)
+         setAdmin(null)
+           }
        } else {
         setUser(null)
+        setAdmin(null)
        }
      })
    }
@@ -29,7 +36,7 @@ function  Loginlogout (props) {
        
      return (
           <>
-           {user && <Loginstate />}
+           {user && <Loginstate admin={admin}/>}
            {!user && <Logoutstate /> }
           </>
      );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from './AdressFrom';
 import PaymentForm from './PymentForm';
 import Review from './Revieu';
+import { Checkbox } from '@material-ui/core';
 
 function Copyright() {
   return (
@@ -68,9 +69,30 @@ const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
 function getStepContent(step, props) {
 
+  // if (step === 0) {
+  //   return <AddressForm getname={props.onGetname} />;
+  // }
+  // else if (step === 1) {
+  //   if (!props.Checkout) {
+  //     return <Review data={props.dataid} value={props.value} />; 
+      
+  //   }
+    
+  //   else {
+  //     return <PaymentForm />;
+  //   }
+  // }
+  // else if (step === 2) {
+  //   return <Review data={props.dataid} value={props.value} />;
+  // }
+  // else {
+  //   throw new Error('Unknown step');
+
+  // }
+
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <AddressForm getname={props.onGetname} />;
     case 1:
       return <PaymentForm />;
     case 2:
@@ -81,9 +103,9 @@ function getStepContent(step, props) {
 }
 
 export default function Checkout(props) {
-  console.log(props)
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -113,8 +135,8 @@ export default function Checkout(props) {
                 <Typography variant="h5" gutterBottom>
                   Thank you for your order.
                 </Typography>
-               
-                <Button  onClick={props.onClose} variant="contained" color="primary">
+
+                <Button onClick={props.onClose} variant="contained" color="primary">
                   Ok
                 </Button>
               </React.Fragment>

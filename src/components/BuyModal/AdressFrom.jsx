@@ -1,11 +1,47 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import fire from "../firebase";
+import "firebase/auth";
+import firebase from 'firebase'
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { makeStyles } from '@material-ui/core/styles';
 
-export default function AddressForm() {
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1.5),
+    minWidth: 264,
+  },
+ 
+}));
+export default function AddressForm(props) {
+  const classes = useStyles();
+  const [age, setAge] = React.useState('');
+
+  const user=firebase.auth().currentUser;
+  const [firstname,setFirstname]=useState(user?user.displayName:'')
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+  const changeFirstname=(e)=>{
+  
+   setFirstname(e.target.value)
+ 
+  }
+useEffect(()=>{
+  const {getname}=props
+  getname(firstname)
+})
+ 
   return (
     <React.Fragment >
       <Typography variant="h6" gutterBottom>
@@ -14,22 +50,25 @@ export default function AddressForm() {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
+          value={firstname}
+          onChange={changeFirstname}
             required
-            id="firstName"
-            name="firstName"
-            label="First name"
+            id="firstName LastName"
+            name="firstName LastName"
+            label="FullName"
             fullWidth
-            autoComplete="given-name"
+            autoComplete="given-firstName LastNamename"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="lastName"
-            name="lastName"
-            label="Last name"
+            id="Phone Number"
+            name="Phone Number"
+            label='Phone Number'
+            placeholder="+374 xx xxxxxx"
             fullWidth
-            autoComplete="family-name"
+            autoComplete="Phone Number"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -42,14 +81,29 @@ export default function AddressForm() {
             autoComplete="shipping address-line"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="State/Province/Region" fullWidth />
-        </Grid>
+        {/* <Grid item xs={12} sm={6}> */}
+        <FormControl className={classes.formControl} item xs={12} sm={6}>
+        <InputLabel id="demo-simple-select-helper-label">Region</InputLabel>
+        <Select
+          labelId="demo-simple-select-helper-label"
+          id="demo-simple-select-helper"
+          value={age}
+          onChange={handleChange}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+        {/* </Grid> */}
       
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
+            label="Kanxik"
           />
         </Grid>
         <Grid>

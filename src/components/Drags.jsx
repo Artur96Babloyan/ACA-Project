@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
     },
 
 }));
-export default function Mercedes(props) {
+export default function Drags(props) {
     const count = useContext(IconCount)
     const classes = useStyles();
     return (
@@ -21,7 +21,7 @@ export default function Mercedes(props) {
             <Grid container justify="center">
                 {props.ndata.map((value) => (
                     <Grid key={value} >
-                        <OurCard className={classes.paper} value={value} count={count} />
+                        <OurCard className={classes.paper} name={props.name} value={value} count={count} />
                     </Grid>
                 ))}
             </Grid>

@@ -7,8 +7,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import hygiene from '../Hygiene'
 import Box from '@material-ui/core/Box';
-import Rating from '@material-ui/lab/Rating';
-
 const addresses = ['Reactville', 'Any', '99999', 'ARM'];
 const payments = [
   { name: 'Expiry date 30 minits' },
@@ -24,10 +22,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
-
 export default function Review(props) {
   const [value, setValue] = React.useState(2);
-
   const classes = useStyles();
   console.log(props.value, props)
   return (
@@ -36,56 +32,41 @@ export default function Review(props) {
         Order summary
       </Typography>
       <List disablePadding>
-        {hygiene.map((product) => {
-          if (product.id === props.data) {
-            return (
-              <ListItem className={classes.listItem} key={product.name}>
-                <Typography variant="body2">
-                  <img src={product.img} style={{ maxWidth: '100px', maxHeight: '100px' }} alt="" />
-                </Typography>
-                  <ListItemText primary={product.name} secondary={product.desc} />
-                  <Box component="fieldset" mb={3} borderColor="transparent">
-                  <Typography component="legend">Controlled</Typography>
-                  <Rating
-                    name="simple-controlled"
-                    value={value}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
-                    }}
-                  />
-                  </Box>
-                  <Typography variant="body2">{product.price}</Typography>
-              </ListItem>
-            )
-          }
-        })}
+
+
+        <ListItem className={classes.listItem} key={value.name}>
+          <Typography variant="body2">
+            <img src={props.value.img} style={{ maxWidth: '100px', maxHeight: '100px' }} alt="" />
+          </Typography>
+          <ListItemText primary={props.value.name} secondary={props.value.desc} />
+          <Box component="fieldset" mb={3} borderColor="transparent">
+            <Typography component="legend">Controlled</Typography>
+          </Box>
+          <Typography variant="body2">{props.value.price}</Typography>
+        </ListItem>
+
         <ListItem className={classes.listItem}>
-                  <ListItemText primary="Total" />
-                  {hygiene.map((product) => {
-                    if (product.id === props.data) {
-                      return (
-                        <Typography variant="body2">{product.price}</Typography>
-                      )
-                    }
-                  })}
-                </ListItem>
+          <ListItemText primary="Total" />
+          <Typography variant="body2">{props.price}</Typography>
+        </ListItem>
       </List>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <Typography gutterBottom>{addresses.join(', ')}</Typography>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+        </Grid>
+        <Grid item container direction="column" xs={12} sm={6}>
+          <Grid container>
+            {payments.map((payment) => (
+              <React.Fragment key={payment.name}>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{payment.name}</Typography>
                 </Grid>
-                <Grid item container direction="column" xs={12} sm={6}>
-                  <Grid container>
-                    {payments.map((payment) => (
-                      <React.Fragment key={payment.name}>
-                        <Grid item xs={6}>
-                          <Typography gutterBottom>{payment.name}</Typography>
-                        </Grid>
-                      </React.Fragment>
-                    ))}
-                  </Grid>
-                </Grid>
-              </Grid>
+              </React.Fragment>
+            ))}
+          </Grid>
+        </Grid>
+      </Grid>
     </React.Fragment>
   );
+
 }

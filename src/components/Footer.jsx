@@ -21,18 +21,20 @@ function Copyright() {
   );
 }
 
+
 const useStyles = makeStyles((theme) => ({
 
   main: {
     display: 'inline-block',
     display: 'flex',
     float: 'right',
+    
   },
   footer: {
-    padding: theme.spacing(2, 2),
-    margin:  '0 0 0 0',
-    backgroundColor:'#195473',
-    marginBottom:'0 !important'
+    padding: theme.spacing(3, 2),
+    backgroundColor:'#195473',    
+    textAlign: 'center',   
+    // marginTop :'auto'
     
   },
 }));
@@ -53,7 +55,7 @@ export default function Footer() {
             <a href='https://twitter.com/explore' style={{ textDecoration: 'none', color: 'white' }}><TwitterIcon /></a>
             <a href='https://twitter.com/explore' style={{ textDecoration: 'none', color: 'white' }}> <ListItemText primary="Twitter" /></a>
           </div>
-          <Copyright />
+          <Copyright  />
         </Container>
       </footer>
     </div>

@@ -4,7 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -18,18 +18,6 @@ import fire from "./firebase";
 import "firebase/auth";
 import firebase from 'firebase'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="/">
-        Med.am
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const styles = ((theme) => ({
   paper: {
@@ -37,6 +25,7 @@ const styles = ((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    marginBottom:'20vh'
   },
   avatar: {
     margin: theme.spacing(1),
@@ -48,6 +37,7 @@ const styles = ((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    
   },
 }));
 
@@ -115,7 +105,7 @@ function ForgotPass(props) {
 
           <Grid container >
             <Grid item>
-              <Link to="/SignUp" variant="body2">
+            <Link to="/SignUp" variant="body2" style={{marginBottom:'50vh'}}>
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
@@ -123,7 +113,6 @@ function ForgotPass(props) {
         </form>
       </div>
       <Box mt={5}>
-        <Copyright />
       </Box>
     </Container>
 

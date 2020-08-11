@@ -4,6 +4,9 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Checkout from './Checkout'
+import fire from "../firebase";
+import "firebase/auth";
+import firebase from 'firebase'
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
@@ -17,14 +20,53 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
 }));
-
 export default function TransitionsModal(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(props.open);
- 
+  const [firstname, setFirstname] = React.useState('');
+   
+  const getname=(firstname)=>{
+    setFirstname(firstname)
+  }
   const handleClose = () => {
-    setOpen(false);
-  };
+    const user=firebase.auth().currentUser;
+    let id;
+    if(user) {
+      fire.firestore().collection('Users').get().then(snapshot=>{
+      
+        snapshot.forEach(doc=>{
+               if(user.uid===doc.data().id) {
+            id=doc.id           
+  fire.firestore().runTransaction(function(transaction) {
+          
+let sfDocRef =fire.firestore().collection("Users").doc(id)
+    return transaction.get(sfDocRef).then(function(sfDoc) {
+         
+       let newArray = sfDoc.data().purchases.concat({date:new Date(),price:props.value.price,name:props.value.name})
+       console.log(newArray)
+            transaction.update(sfDocRef,  {purchases: newArray });
+           
+       
+    });
+  })
+               
+        }}
+         
+     )})
+      
+        
+      setOpen(false);
+    } else {
+      fire.firestore().collection('Users').add({
+        buyername:firstname,
+        date:new Date(),
+        price:props.value.price,
+        name:props.value.name
+      })
+      setOpen(false);
+    }
+    
+  }
   return (
     <div>
       {/* <button onClick={handleOpen}>open</button> */}
@@ -41,7 +83,7 @@ export default function TransitionsModal(props) {
         }}
       >
         <Fade in={open}>
-          <Checkout  className={classes.paper} dataid={props.dataId} value={props.value} onClose={handleClose} /> 
+          <Checkout  className={classes.paper} onGetname={getname} dataid={props.dataId} value={props.value} onClose={handleClose} /> 
         </Fade>
       </Modal>
     </div>
