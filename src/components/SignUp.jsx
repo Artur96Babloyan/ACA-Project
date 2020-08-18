@@ -22,18 +22,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="/">
-        Med.am
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 const styles = ((theme) => ({
   paper: {
@@ -44,7 +33,7 @@ const styles = ((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#195473'
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -52,6 +41,8 @@ const styles = ((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#195473',
+    color:'white'
   },
 }));
 
@@ -112,13 +103,13 @@ function SignUp(props) {
 
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" id='responsiveSignIn'>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" >
           Sign Up
           </Typography>
         <form className={classes.form} noValidate>
@@ -190,7 +181,6 @@ function SignUp(props) {
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
               className={classes.submit}
             >
               Sign Up
@@ -207,9 +197,7 @@ function SignUp(props) {
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
+      
     </Container>
   );
 

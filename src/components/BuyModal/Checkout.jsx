@@ -73,21 +73,19 @@ function getStepContent(step, props) {
   //   return <AddressForm getname={props.onGetname} />;
   // }
   // else if (step === 1) {
-  //   if (!props.Checkout) {
+  //   if (!props.Checkbox) {
   //     return <Review data={props.dataid} value={props.value} />; 
-      
+  //     console.log(props.Checkbox)
   //   }
-    
   //   else {
   //     return <PaymentForm />;
   //   }
   // }
-  // else if (step === 2) {
+  // else if (step === 2 && props.Checkbox) {
   //   return <Review data={props.dataid} value={props.value} />;
   // }
   // else {
   //   throw new Error('Unknown step');
-
   // }
 
   switch (step) {
@@ -110,6 +108,8 @@ export default function Checkout(props) {
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
+
+
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -149,6 +149,12 @@ export default function Checkout(props) {
                         Back
                       </Button>
                     )}
+                      <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="saveAddress"  />}
+            label="Kanxik"
+          />
+        </Grid>
                     <Button
                       variant="contained"
                       color="primary"

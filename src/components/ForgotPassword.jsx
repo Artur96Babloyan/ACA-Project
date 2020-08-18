@@ -13,7 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Container from '@material-ui/core/Container';
-
 import fire from "./firebase";
 import "firebase/auth";
 import firebase from 'firebase'
@@ -25,19 +24,20 @@ const styles = ((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginBottom:'20vh'
+    marginBottom: '20vh'
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#195473'
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    
+    backgroundColor: '#195473',
+    color: 'white'
   },
 }));
 
@@ -63,7 +63,7 @@ function ForgotPass(props) {
 
   return (
 
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" id='responsiveSignIn'>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -75,19 +75,19 @@ function ForgotPass(props) {
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-            <TextField
-                        value={email}
-                        onChange={emailChange}
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address or Phone Number"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                    />
+              <TextField
+                value={email}
+                onChange={emailChange}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address or Phone Number"
+                name="email"
+                autoComplete="email"
+                autoFocus
+              />
             </Grid>
           </Grid>
           <Link to="/" style={{ textDecoration: 'none' }}>
@@ -105,7 +105,7 @@ function ForgotPass(props) {
 
           <Grid container >
             <Grid item>
-            <Link to="/SignUp" variant="body2" style={{marginBottom:'50vh'}}>
+              <Link to="/SignUp" variant="body2" style={{ marginBottom: '50vh' }}>
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

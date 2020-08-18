@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import LongMenu from './Menu'
+// import LongMenu from './Menu'
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -16,6 +16,7 @@ import { withRouter } from "react-router-dom";
 import Loginlogout from './LoginLogout';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import './App.css'
+import PersistentDrawerLeft from './BurgerMenu/Burger-menu'
 
 
 
@@ -95,11 +96,12 @@ function Header(props) {
   const classes = useStyles();
   return (
 
-    <div className={classes.root}>
+    <div className={classes.root} id="header">
       <AppBar position="static" className={classes.body}>
         <Toolbar>
-          {/* <LongMenu /> */}
-          <Typography variant="h9" className={classes.title}>
+           {/*<LongMenu />*/}
+          <PersistentDrawerLeft />
+          <Typography variant="h6" className={classes.title} id="logoMedia">
             <a href='/' style={{ color: "white", textDecoration: 'none' }} >MED.AM</a>
           </Typography>
           <div className={classes.butons} id='button'>
@@ -109,7 +111,7 @@ function Header(props) {
             <Button href="#text-buttons" >ԱՌՑԱՆՑ ԲԺԻՇԿ</Button>
             <Button href="#text-buttons" >ԿԱՊ</Button>
           </div>
-          <IconButton onClick={SearchIconClick} type="submit" className={classes.iconButton} aria-label="search">
+          <IconButton onClick={SearchIconClick} type="submit" className={classes.iconButton} aria-label="search" id="mobileVersion">
             <SearchIcon />
           </IconButton>
           {openSearch &&
@@ -123,7 +125,7 @@ function Header(props) {
               />
             </Paper>
           }
-          <Button color="inherit">
+          <Button color="inherit" href='/Order'>
             <StyledBadge badgeContent={props.value} color="secondary">
               <AddShoppingCartIcon />
             </StyledBadge></Button>

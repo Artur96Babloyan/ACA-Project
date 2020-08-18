@@ -14,11 +14,12 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from './components/Signin'
 import SignUp from './components/SignUp'
 import FooterPage from './components/Footer'
-import ForgotPass from './components/FrogotPassword'
+import ForgotPass from './components/ForgotPassword'
 import Drags from './components/Drags'
 import './components/App.css'
 import SimpleSlider from './components/Slider/Slider'
 import UserInfo from './components/UserInfo'
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     height: 140,
@@ -52,7 +53,7 @@ function App() {
       <Router>
         <Header value={count.count} />
         <Route path='/' exact >
-          <SimpleSlider />
+          <SimpleSlider/>
           <Grid container justify="center" >
             { data.map((value) => (
               <Grid key={value.id} item >

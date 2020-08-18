@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import mercedes from './Medicines'
 import OurCard from './Card'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { IconCount } from './data'
 import { useContext } from 'react';
+import './App.css'
 const useStyles = makeStyles(() => ({
 
     paper: {
@@ -17,7 +17,7 @@ export default function Drags(props) {
     const count = useContext(IconCount)
     const classes = useStyles();
     return (
-        <div>
+        <div id='responsiveCards'>
             <Grid container justify="center">
                 {props.ndata.map((value) => (
                     <Grid key={value} >

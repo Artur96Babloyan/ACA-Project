@@ -8,8 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red, green } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import { red, green,blue } from '@material-ui/core/colors';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { withRouter } from "react-router-dom";
 import Menus from './share'
@@ -23,6 +22,7 @@ import { useContext } from 'react';
 import Editcard from './EditCard'
 import Deletecard from './DeleteCard'
 import Addcard from './AddCard'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -93,7 +93,7 @@ function OurCard(props) {
     
   };
   const changeColor = () => {
-    setColor(color = color === '' ? red[500] : '')
+    setColor(color = color === '' ? '#195473' : '')
     props.count.onChange(color, props.count)
   }
   
@@ -138,7 +138,7 @@ function OurCard(props) {
               <TransitionsModal  dataId={id} open={showModal} value={props.value}/>
             </div>}
             <IconButton onClick={changeColor} aria-label="add to favorites">
-              <FavoriteIcon style={{ color }} />
+              <ShoppingCartIcon style={{ color,float:'right' }} />
             </IconButton>
           </>}
           
@@ -148,7 +148,7 @@ function OurCard(props) {
          
           {admin && <div className={classes.admin} onClick={onChangeAddOpen}>add</div>}
          
-        <Menus />
+        {/* <Menus /> */}
       </CardActions>
       {isEditOpen && <Editcard onClose={onChangeEditOpen} productName={props.value.name} priceValue={props.value.price} sectionName={props.name}/>}
       {isDeleteOpen && <Deletecard onClose={onChangeDeleteOpen} productName={props.value.name}  sectionName={props.name}/>}

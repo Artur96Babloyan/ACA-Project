@@ -31,7 +31,7 @@ export default function SimpleSlider() {
  }
 
  return (
-  <div>
+  <div id='slider'>
    <Slider {...settings}>
  <div>
   <img className={classes.img} src={require("./img/Rectangle 2.png")} />

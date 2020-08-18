@@ -81,7 +81,6 @@ useEffect(()=>{
             autoComplete="shipping address-line"
           />
         </Grid>
-        {/* <Grid item xs={12} sm={6}> */}
         <FormControl className={classes.formControl} item xs={12} sm={6}>
         <InputLabel id="demo-simple-select-helper-label">Region</InputLabel>
         <Select
@@ -98,14 +97,8 @@ useEffect(()=>{
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-        {/* </Grid> */}
       
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Kanxik"
-          />
-        </Grid>
+      
         <Grid>
          
         </Grid>

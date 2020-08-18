@@ -1,14 +1,40 @@
-@media screen and (max-width:700px){
-   #button{
-      display: none;
-      
+@media screen and (max-width: 700px) {
+   #button {
+       display: none;
+   }
+
+   #slider,#responsiveCards,#responsiveSignIn {
+       padding-top: 16vw !important;
+
+   }
+
+   #logoMedia {
+       text-align: center;
+       font-size: 7vw;
+       margin-left: -20vw;
    }
 }
-*{
+
+#header {
+   position: fixed;
+   top: 0;
+   width: 100%;
+   z-index: 2;
+}
+
+#slider,#responsiveCards,#responsiveSignIn {
+   padding-top: 5.1vw;
+}
+
+@media screen and (min-width: 700px) {
+   #burgerMenu {
+       display: none;
+   }
+}
+
+
+* {
    margin: 0;
    padding: 0;
 }
-body, html{
-  margin : 0;
-  height: 100% !important;
-}
+
