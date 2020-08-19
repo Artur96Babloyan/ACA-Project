@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 import fire from "./firebase";
 import   "firebase/auth";
 import   "firebase/firestore";
@@ -82,17 +83,14 @@ const makeChange=()=>{
        
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            <span>bajin</span>
-            <input value={sectionValue} onCahnge={handleSection}/>
+            <TextField id="standard-basic" label="Բաժին" value={sectionValue} onCahnge={handleSection}/>
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             <div>
-          <span>apranq</span>
-            <input value={productValue} onChange={handleProduct}/>
+            <TextField id="standard-basic" label="Աբրանք)" value={productValue} onChange={handleProduct}/>
             </div>
             <div>
-            <span>gin</span>
-            <input value={priceValue} onChange={handlePrice}/>
+            <TextField id="standard-basic" label="Գին" value={priceValue} onChange={handlePrice}/>
             </div>
           </Typography>
         </CardContent>

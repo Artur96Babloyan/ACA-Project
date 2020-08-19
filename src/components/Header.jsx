@@ -5,7 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-// import LongMenu from './Menu'
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -14,7 +13,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import { withRouter } from "react-router-dom";
 import Loginlogout from './LoginLogout';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import './App.css'
 import PersistentDrawerLeft from './BurgerMenu/Burger-menu'
 
@@ -129,7 +127,6 @@ function Header(props) {
             <StyledBadge badgeContent={props.value} color="secondary">
               <AddShoppingCartIcon />
             </StyledBadge></Button>
-            {/* <AccountBoxIcon /> */}
           <Loginlogout />
         </Toolbar>
       </AppBar>

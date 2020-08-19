@@ -17,8 +17,6 @@ import   "firebase/auth";
 import   "firebase/firestore";
 import firebase from'firebase'
 import TransitionsModal from './BuyModal/Modal'
-import { IconCount } from './data'
-import { useContext } from 'react';
 import Editcard from './EditCard'
 import Deletecard from './DeleteCard'
 import Addcard from './AddCard'
@@ -148,7 +146,6 @@ function OurCard(props) {
          
           {admin && <div className={classes.admin} onClick={onChangeAddOpen}>add</div>}
          
-        {/* <Menus /> */}
       </CardActions>
       {isEditOpen && <Editcard onClose={onChangeEditOpen} productName={props.value.name} priceValue={props.value.price} sectionName={props.name}/>}
       {isDeleteOpen && <Deletecard onClose={onChangeDeleteOpen} productName={props.value.name}  sectionName={props.name}/>}

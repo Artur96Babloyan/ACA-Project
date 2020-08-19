@@ -5,7 +5,10 @@
 
    #slider,#responsiveCards,#responsiveSignIn {
        padding-top: 16vw !important;
-
+   
+   }
+   #Cart {
+      padding-top: 15vw;
    }
 
    #logoMedia {

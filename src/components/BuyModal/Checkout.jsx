@@ -13,20 +13,11 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from './AdressFrom';
 import PaymentForm from './PymentForm';
 import Review from './Revieu';
+import Grid from '@material-ui/core/Grid';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Checkbox } from '@material-ui/core';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -149,12 +140,12 @@ export default function Checkout(props) {
                         Back
                       </Button>
                     )}
-                      <Grid item xs={12}>
+                      {/* <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress"  />}
             label="Kanxik"
           />
-        </Grid>
+        </Grid> */}
                     <Button
                       variant="contained"
                       color="primary"
@@ -168,7 +159,6 @@ export default function Checkout(props) {
               )}
           </React.Fragment>
         </Paper>
-        <Copyright />
       </main>
     </React.Fragment>
   );

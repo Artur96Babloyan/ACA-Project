@@ -19,6 +19,7 @@ import Drags from './components/Drags'
 import './components/App.css'
 import SimpleSlider from './components/Slider/Slider'
 import UserInfo from './components/UserInfo'
+import EnhancedTable from './components/Cart'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -82,6 +83,9 @@ function App() {
         </Route>
         <Route path='/UserInfo'>
           <UserInfo />
+        </Route>
+        <Route path='/Order'>
+          <EnhancedTable />
         </Route>
         <FooterPage />
       </Router>
