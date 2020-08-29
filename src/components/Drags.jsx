@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import OurCard from './Card'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { IconCount } from './data'
 import { useContext } from 'react';
+import uuid from 'react-uuid'
 import './App.css'
 const useStyles = makeStyles(() => ({
 
@@ -20,7 +21,7 @@ export default function Drags(props) {
         <div id='responsiveCards'>
             <Grid container justify="center">
                 {props.ndata.map((value) => (
-                    <Grid key={value} >
+                    <Grid key={uuid()} >
                         <OurCard className={classes.paper} name={props.name} value={value} count={count} />
                     </Grid>
                 ))}

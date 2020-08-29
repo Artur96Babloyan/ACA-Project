@@ -20,7 +20,7 @@ const data = [
         name: 'Hygiene',
         info: 'dsjakxsa',
         id: 2,
-        img: 'https://cdn.shopify.com/s/files/1/1600/4387/products/1-DVL-hero.png?v=1573838539',
+        img: 'https://cdn.folhape.com.br/upload/dn_arquivo/2020/05/edw-6373.jpg',
         data: hygiene
     },
     {

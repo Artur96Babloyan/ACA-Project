@@ -1,17 +1,15 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import fire from "./firebase";
 import "firebase/auth";
 import "firebase/firestore";
-import firebase from 'firebase'
 function Addcard(props) {
 
   const [sectionValue, setSectionvalue] = useState(props.sectionName)
@@ -65,7 +63,6 @@ function Addcard(props) {
       return transaction.get(sfDocRef).then(function (sfDoc) {
 
         console.log(sfDoc.data())
-        let arr = sfDoc.data().data
 
         var newArray = sfDoc.data().data.concat({ name: productValue, img: imgValue, price: priceValue })
 

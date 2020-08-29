@@ -1,25 +1,23 @@
 import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
+import uuid from 'react-uuid'
+import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 
 function Copyright() {
   return (
-
     <Typography variant="body2" color="textSecondary" align="center">
-      <Typography variant="body1" style={{ textDecoration: 'none' }}>
-        We will take care of your health  address Avan Acharyan 20/1
-      </Typography>
       {'Copyright © '}
       <Link color="inherit" href="/">
         Med.am
       </Link>{' '}
-
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -27,16 +25,14 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
-
   '@global': {
     ul: {
       margin: 0,
       padding: 0,
       listStyle: 'none',
-
     },
   },
-
+ 
   footer: {
     borderTop: `1px solid ${theme.palette.divider}`,
     marginTop: theme.spacing(8),
@@ -47,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: theme.spacing(6),
     },
   },
-
 }));
 
 
@@ -66,12 +61,10 @@ const footers = [
   },
   {
     title: 'Share',
-    description: [<a href='https://www.instagram.com/accounts/login/?hl=ru' style={{ textDecoration: 'none', color: 'white' }}><img style={{ width: '20px', height: '20px', margin: 3 }} src='https://d3frsattnbx5l6.cloudfront.net/1532688803714-instagram-94fd767f257b.png' /></a>,
-    <a href='https://www.instagram.com/accounts/login/?hl=ru' style={{ textDecoration: 'none', color: 'white' }}> </a>,
-    <a href='https://www.facebook.com/' style={{ textDecoration: 'none' }}><FacebookIcon /></a>,
-    <a href='https://www.facebook.com/' style={{ textDecoration: 'none' }}> </a>,
-    <a href='https://twitter.com/explore' style={{ textDecoration: 'none' }}><TwitterIcon /></a>,
-    <a href='https://twitter.com/explore' style={{ textDecoration: 'none' }}> </a>],
+    description: [
+      <Link href='https://www.instagram.com/accounts/login/?hl=ru'><InstagramIcon /></Link>,
+      <Link href='https://www.facebook.com/accounts/login/?hl=ru'><FacebookIcon /></Link>,
+      <Link href='https://twitter.com/'><TwitterIcon /></Link>],
   },
 ];
 
@@ -80,20 +73,20 @@ export default function Pricing() {
 
   return (
     <React.Fragment>
-      {/*start  Footer */}
+      <CssBaseline />
+
+      {/* Footer */}
       <Container maxWidth="md" component="footer" className={classes.footer}>
         <Grid container spacing={4} justify="space-evenly">
           {footers.map((footer) => (
-            <Grid item xs={6} sm={3} key={footer.title}>
+            <Grid item xs={6} sm={3} key={uuid()}>
               <Typography variant="h6" color="textPrimary" gutterBottom>
                 {footer.title}
               </Typography>
-              <ul>
+              <ul key={uuid()}>
                 {footer.description.map((item) => (
-                  <li key={item}>
-                    <Link href="#" variant="subtitle1" color="textSecondary">
-                      {item}
-                    </Link>
+                  <li key={uuid()}>
+                    {item}
                   </li>
                 ))}
               </ul>

@@ -1,22 +1,19 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
 import fire from "./firebase";
 import "firebase/auth";
-import firebase from 'firebase'
-import Card from '@material-ui/core/Card';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 
 
@@ -54,7 +51,6 @@ function Login(props) {
 
 
   const changeEmail = (event) => {
-    //const {name}=this.state
     setEmail(event.target.value)
   }
 
@@ -120,7 +116,6 @@ function Login(props) {
               />
             </Grid>
           </Grid>
-          <Link to="/" style={{ textDecoration: 'none' }}>
             <Button href='/'
               onClick={login}
               type="submit"
@@ -131,9 +126,6 @@ function Login(props) {
             >
               Sign in
               </Button>
-
-          </Link>
-
           <Grid container >
             <Grid item xs>
               <Link to="/forgotPassword" variant="body2">
@@ -148,7 +140,7 @@ function Login(props) {
           </Grid>
         </form>
       </div>
-      
+
     </Container>
   );
 

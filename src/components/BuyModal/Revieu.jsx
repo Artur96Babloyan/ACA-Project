@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
-import hygiene from '../Hygiene'
 import Box from '@material-ui/core/Box';
 const addresses = ['Reactville', 'Any', '99999', 'ARM'];
 const payments = [
@@ -23,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function Review(props) {
-  const [value, setValue] = React.useState(2);
+
   const classes = useStyles();
   console.log(props.value, props)
   return (
@@ -32,11 +31,9 @@ export default function Review(props) {
         Order summary
       </Typography>
       <List disablePadding>
-
-
-        <ListItem className={classes.listItem} key={value.name}>
+        <ListItem className={classes.listItem} key={1}>
           <Typography variant="body2">
-            <img src={props.value.img} style={{ maxWidth: '100px', maxHeight: '100px' }} alt="" />
+            <img src={props.value.img} style={{ maxWidth: '100px', maxHeight: '100px' }} alt='Nkar' />
           </Typography>
           <ListItemText primary={props.value.name} secondary={props.value.desc} />
           <Box component="fieldset" mb={3} borderColor="transparent">

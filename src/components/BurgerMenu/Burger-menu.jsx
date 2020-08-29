@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
@@ -17,6 +16,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Button from '@material-ui/core/Button';
+import uuid from 'react-uuid'
 
 const drawerWidth = 240;
 
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: theme.spacing(2),
     },
-   
+
     drawerPaper: {
         width: drawerWidth,
     },
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
         ...theme.mixins.toolbar,
         justifyContent: 'flex-end',
     },
- 
+
 }));
 
 export default function PersistentDrawerLeft() {
@@ -88,7 +88,7 @@ export default function PersistentDrawerLeft() {
                 }}
             >
                 <div className={classes.drawerHeader}>
-                    <Typography variant="h9" className={classes.title}>
+                    <Typography variant="h6" className={classes.title}>
                         <a href='/' style={{ color: "white", textDecoration: 'none' }} >MED.AM</a>
                     </Typography>
                     <IconButton onClick={handleDrawerClose}>
@@ -96,24 +96,22 @@ export default function PersistentDrawerLeft() {
                     </IconButton>
                 </div>
                 <Divider />
-                <List>
+                <List key ={uuid()}>
 
                     {[<Button href='/'>ԳԼԽԱՎՈՐ</Button>,
                     <Button href="#text-buttons" >ՏԵՍԱԿԱՆԻ</Button>,
                     <Button href="#text-buttons" >ՄԵՐ ՄԱՍԻՆ</Button>,
                     <Button href="#text-buttons" >ԱՌՑԱՆՑ ԲԺԻՇԿ</Button>,
-                    <Button href="#text-buttons" >ԿԱՊ</Button>].map((text, index) => (
-                        <ListItem button key={text}>
-
-                            <ListItemText primary={text} />
-
+                    <Button href="#text-buttons" >ԿԱՊ</Button>].map((text) => (
+                        <ListItem button key={uuid()}>
+                            <ListItemText primary={text} key={uuid()} />
                         </ListItem>
                     ))}
                 </List>
                 <Divider />
-                <List>
+                <List key={uuid()}>
                     {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
+                        <ListItem button key={uuid()}>
                             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>

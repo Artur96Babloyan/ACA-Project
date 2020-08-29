@@ -1,13 +1,9 @@
 import React from 'react';
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import fire from "./firebase";
 import "firebase/auth";
-import firebase from 'firebase'
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,7 +11,6 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
@@ -42,7 +37,7 @@ const styles = ((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
     backgroundColor: '#195473',
-    color:'white'
+    color: 'white'
   },
 }));
 
@@ -73,30 +68,28 @@ function SignUp(props) {
 
 
 
-  const signup=()=>{
-    var id;
-    
-    fire.auth().createUserWithEmailAndPassword(email,password).then((cred)=>{
-      
-      
-      console.log(cred) 
-    console.log(cred.user)
-    cred.user.updateProfile({
-    displayName: firstname+' '+''+lastname
-    
+  const signup = () => {
+
+    fire.auth().createUserWithEmailAndPassword(email, password).then((cred) => {
+
+
+      console.log(cred)
+      console.log(cred.user)
+      cred.user.updateProfile({
+        displayName: firstname + '' + lastname
+      })
+      fire.firestore().collection('Users').doc().set({
+        name: firstname,
+        surname: lastname,
+        id: cred.user.uid,
+        email: email,
+        joinedDate: new Date().toString(),
+        purchases: []
+      })
     })
-    fire.firestore().collection('Users').doc().set({
-      name:firstname,
-      surname:lastname,
-      id:cred.user.uid,
-      email:email,
-      joinedDate: new Date().toString(),
-      purchases: []
-    })
-    })
-    
-    
-    }  
+
+
+  }
 
 
   const { classes } = props
@@ -175,7 +168,6 @@ function SignUp(props) {
               />
             </Grid>
           </Grid>
-          <Link to="/" style={{textDecoration:'none'}}>
             <Button href='/'
               onClick={signup}
               type="submit"
@@ -186,8 +178,6 @@ function SignUp(props) {
               Sign Up
             </Button>
 
-          </Link>
-
           <Grid container justify="flex-end">
             <Grid item>
               <Link to='/SignIn' variant="body2">
@@ -197,7 +187,6 @@ function SignUp(props) {
           </Grid>
         </form>
       </div>
-      
     </Container>
   );
 

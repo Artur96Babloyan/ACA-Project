@@ -10,12 +10,21 @@
    #Cart {
       padding-top: 15vw;
    }
-
+   /* body{
+      overflow-x: hidden !important;
+      width: 100% !important;
+   } */
    #logoMedia {
        text-align: center;
        font-size: 7vw;
        margin-left: -20vw;
    }
+}
+/* body{
+   overflow-x: hidden;
+} */
+#Cart {
+   padding-top: 15vw;
 }
 
 #header {

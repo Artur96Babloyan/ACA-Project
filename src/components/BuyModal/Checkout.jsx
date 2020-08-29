@@ -1,22 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import "firebase/auth";
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import AddressForm from './AdressFrom';
+import AddressForm from './AdressForm';
 import PaymentForm from './PymentForm';
 import Review from './Revieu';
-import Grid from '@material-ui/core/Grid';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { Checkbox } from '@material-ui/core';
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -56,52 +50,48 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
-
-function getStepContent(step, props) {
-
-  // if (step === 0) {
-  //   return <AddressForm getname={props.onGetname} />;
-  // }
-  // else if (step === 1) {
-  //   if (!props.Checkbox) {
-  //     return <Review data={props.dataid} value={props.value} />; 
-  //     console.log(props.Checkbox)
-  //   }
-  //   else {
-  //     return <PaymentForm />;
-  //   }
-  // }
-  // else if (step === 2 && props.Checkbox) {
-  //   return <Review data={props.dataid} value={props.value} />;
-  // }
-  // else {
-  //   throw new Error('Unknown step');
-  // }
-
-  switch (step) {
-    case 0:
-      return <AddressForm getname={props.onGetname} />;
-    case 1:
-      return <PaymentForm />;
-    case 2:
-      return <Review data={props.dataid} value={props.value} />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
-
+let steps = ['Shipping address', 'Payment details', 'Review your order'];
 export default function Checkout(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [inputChecked, setInputchecked] = React.useState(false);
 
+  const input1Checked = (isChecked) => {
+    console.log(isChecked)
+    setInputchecked(!isChecked)
+    console.log(inputChecked)
+
+  }
+
+  const getStepContent = (step, props) => {
+
+
+    switch (step) {
+      case 0:
+        return <AddressForm getCheck={input1Checked} getname={props.onGetname} />;
+      case 1:
+
+        return <PaymentForm />;
+      case 2:
+        return <Review data={props.dataid} value={props.value} />;
+      default:
+        throw new Error('Unknown step');
+    }
+  }
 
   const handleNext = () => {
-    setActiveStep(activeStep + 1);
+
+    if (inputChecked) {
+
+      setActiveStep(activeStep + 2);
+      steps = ['Shipping address', '', 'Review your order'];
+    } else {
+      setActiveStep(activeStep + 1);
+      steps = ['Shipping address', 'Payment details', 'Review your order'];
+
+    }
+
   };
-
-
-
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
@@ -121,7 +111,7 @@ export default function Checkout(props) {
             ))}
           </Stepper>
           <React.Fragment>
-            {activeStep === steps.length ? (
+            {activeStep >= steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
                   Thank you for your order.
@@ -140,12 +130,6 @@ export default function Checkout(props) {
                         Back
                       </Button>
                     )}
-                      {/* <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress"  />}
-            label="Kanxik"
-          />
-        </Grid> */}
                     <Button
                       variant="contained"
                       color="primary"

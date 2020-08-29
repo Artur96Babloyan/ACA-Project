@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,6 +13,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import { withRouter } from "react-router-dom";
 import Loginlogout from './LoginLogout';
+import fire from "./firebase";
+import "firebase/auth";
 import './App.css'
 import PersistentDrawerLeft from './BurgerMenu/Burger-menu'
 
@@ -35,8 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
   butons: {
     '& > *': {
-      // marginRight: theme.spacing(3),
-      margin : '1vw',
+      margin: '1vw',
       color: 'white',
       fontSize: '1.3vw'
     },
@@ -57,13 +58,11 @@ const useStyles = makeStyles((theme) => ({
     color: 'white'
   },
   input: {
-    // marginLeft: theme.spacing(1),
-    marginLeft:'1vw',
+    marginLeft: '1vw',
     flex: 1,
   },
   menuButton: {
-    // marginRight: theme.spacing(2),
-    marginRight:'2vw'
+    marginRight: '2vw'
   },
   title: {
     fontSize: '2vw',
@@ -73,13 +72,25 @@ const useStyles = makeStyles((theme) => ({
 function Header(props) {
   let [value, setValue] = useState()
   const [openSearch, setOpenSearch] = useState(false)
+  const [backValue, setBackvalue] = useState('')
   const onchange = (event) => {
     setValue(value = event ? event.target.value : '')
 
   }
 
+  const getInitialValue = () => {
+    let docRef = fire.firestore().collection("CountValue").doc('FU8bp8RpRstDLRVFo1Gh');
+    docRef.get().then(function (doc) {
+      setBackvalue(doc.data().count)
+    })
+  }
+  useEffect(() => {
+    getInitialValue()
+  },
+  )
+
   const keyPress = (e) => {
-    if (e.keyCode == 13 && value !== '') {
+    if (e.keyCode === 13 && value !== '') {
       props.history.push(value)
       setValue(value = '')
 
@@ -97,7 +108,6 @@ function Header(props) {
     <div className={classes.root} id="header">
       <AppBar position="static" className={classes.body}>
         <Toolbar>
-           {/*<LongMenu />*/}
           <PersistentDrawerLeft />
           <Typography variant="h6" className={classes.title} id="logoMedia">
             <a href='/' style={{ color: "white", textDecoration: 'none' }} >MED.AM</a>
@@ -124,7 +134,7 @@ function Header(props) {
             </Paper>
           }
           <Button color="inherit" href='/Order'>
-            <StyledBadge badgeContent={props.value} color="secondary">
+            <StyledBadge badgeContent={backValue} color="secondary">
               <AddShoppingCartIcon />
             </StyledBadge></Button>
           <Loginlogout />

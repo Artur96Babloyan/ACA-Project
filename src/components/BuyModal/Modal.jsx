@@ -7,6 +7,7 @@ import Checkout from './Checkout'
 import fire from "../firebase";
 import "firebase/auth";
 import firebase from 'firebase'
+
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
@@ -24,52 +25,76 @@ export default function TransitionsModal(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(props.open);
   const [firstname, setFirstname] = React.useState('');
-   
-  const getname=(firstname)=>{
+  const [phone, setPhone] = React.useState('');
+  const [address, setAddress] = React.useState('');
+  const [email, setEmail] = React.useState('');
+
+  const getname = (firstname, phone, address, state) => {
     setFirstname(firstname)
+    setPhone(phone)
+    setAddress(address)
+    setEmail(email)
   }
   const handleClose = () => {
-    const user=firebase.auth().currentUser;
+    const user = firebase.auth().currentUser;
     let id;
-    if(user) {
-      fire.firestore().collection('Users').get().then(snapshot=>{
-      
-        snapshot.forEach(doc=>{
-               if(user.uid===doc.data().id) {
-            id=doc.id           
-  fire.firestore().runTransaction(function(transaction) {
-          
-let sfDocRef =fire.firestore().collection("Users").doc(id)
-    return transaction.get(sfDocRef).then(function(sfDoc) {
-         
-       let newArray = sfDoc.data().purchases.concat({date:new Date(),price:props.value.price,name:props.value.name})
-       console.log(newArray)
-            transaction.update(sfDocRef,  {purchases: newArray });
-           
-       
-    });
-  })
-               
-        }}
-         
-     )})
-      
-        
+    if (user) {
+      fire.firestore().collection('Users').get().then(snapshot => {
+
+        snapshot.forEach(doc => {
+          if (user.uid === doc.data().id) {
+            id = doc.id
+            fire.firestore().runTransaction(function (transaction) {
+
+              let sfDocRef = fire.firestore().collection("Users").doc(id)
+              return transaction.get(sfDocRef).then(function (sfDoc) {
+
+                let newArray = sfDoc.data().purchases.concat({ date: new Date().toString(), price: props.value.price, name: props.value.name })
+                console.log(newArray)
+                transaction.update(sfDocRef, { purchases: newArray });
+
+
+              });
+            })
+
+          }
+        }
+
+        )
+      })
+      fire.firestore().collection('Users1').add({
+        buyername: firstname,
+        phoneNumber: phone,
+        addressName: address,
+        EmailName: email,
+        date: new Date().toString(),
+        year: new Date().getFullYear(),
+        month: new Date().getMonth(),
+        day: new Date().getDate(),
+        price: props.value.price,
+        name: props.value.name
+      })
+
       setOpen(false);
     } else {
-      fire.firestore().collection('Users').add({
-        buyername:firstname,
-        date:new Date(),
-        price:props.value.price,
-        name:props.value.name
+      fire.firestore().collection('Users1').add({
+        buyername: firstname,
+        phoneNumber: phone,
+        addressName: address,
+        EmailName: email,
+        date: new Date().toString(),
+        year: new Date().getFullYear(),
+        month: new Date().getMonth(),
+        day: new Date().getDate(),
+        price: props.value.price,
+        name: props.value.name
       })
       setOpen(false);
     }
-    
+
   }
   return (
     <div>
-      {/* <button onClick={handleOpen}>open</button> */}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -83,7 +108,7 @@ let sfDocRef =fire.firestore().collection("Users").doc(id)
         }}
       >
         <Fade in={open}>
-          <Checkout  className={classes.paper} onGetname={getname} dataid={props.dataId} value={props.value} onClose={handleClose} /> 
+          <Checkout className={classes.paper} onGetname={getname} dataid={props.dataId} value={props.value} onClose={handleClose} />
         </Fade>
       </Modal>
     </div>
